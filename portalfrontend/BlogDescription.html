@@ -1,0 +1,58 @@
+<div ng-init="getComments(blogContent.blogId)">
+<!-- <div ng-init = "blogDescription(blogcontent.blogId)"> -->
+<div class="col-md-2"></div>
+<div class ="col-md-8">
+<div>
+  <h3> Blog Name: {{blogContent.blogName}}</h3>
+</div>
+<div>
+  <h3> Blog Description</h3>
+  <p> {{blogContent.blogDescription}}</p>
+</div>
+<div>
+  <h4> Added by : {{blogContent.user.username}}</h4>
+  <h4> Likes : {{blogContent.likes}}</h4>
+</div>
+
+<div class="form-group">
+  <button type="button" class="btn btn-default btn-sm" ng-click="likeBlog()" ng-show="!likedStatus">
+         <span class="glyphicon glyphicon-thumbs-up"></span> Like
+  </button>
+</div>
+
+<div class="form-group">
+  <button type="button" class="btn btn-info btn-sm" ng-click = "unlikeBlog()" ng-show="likedStatus">
+         <span class="glyphicon glyphicon-thumbs-up"></span> Liked
+  </button>
+</div>
+
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Comment here.." ng-model="blogComment.blogCommentText" ng-keyup="addComment($event)">
+</div>
+<div class="col-md-10">
+  <ul>
+      <li ng-repeat="bc in blogCommentsList | orderBy: '-bc.blogCommentId'" >{{bc.blogCommentText}}     [by {{bc.commentedBy}}]    [{{bc.commentedDate | date}}]</li>
+  </ul>
+</div>
+<form>
+  <div class="form-group" ng-show = "userdetails.user_role == 'admin' && blogContent.approved==false">
+  <!--   <input type="radio"  value="true" ng-model= "approved">Approve
+    <input type="radio"  value="false" ng-model="approved">Reject
+
+    <button type="button" name="button" ng-click="approve(approved)">Submit</button>-->
+
+
+<input type="radio" ng-model="blogPost.approved" value="true" ng-click="showRejectionTxt(false)">Approve
+<input type="radio" ng-model="blogPost.approved" value="false" ng-click="showRejectionTxt(true)">Reject
+<br>
+<input type = "hidden" ng-model = "blogPost.rejectionReason" ng-if="!isRejected" value="">
+<div ng-show="isRejected">
+Enter Rejection Reason
+<input type="text" ng-model="blogPost.rejectionReason" ><br>
+</div>
+<input type="submit" ng-click="approve(blogPost)">
+</form>
+  </div>
+
+</div>
+</div>
