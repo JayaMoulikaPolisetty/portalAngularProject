@@ -32,16 +32,17 @@ public class FriendDaoImpl implements FriendDao {
 		return true;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
-	public List<Friend> allFriends(String username) {
+	public List<String> allFriends(String username) {
 		try {
 		Session s= sessionFactory.getCurrentSession();
-		Query query = s.createQuery("from Friend where sentUser=? and status = '1' or receivedUser =? and status = '1' ");
-		query.setParameter(0,username);
-		query.setParameter(1,username);
-		List<Friend> friends = query.getResultList();
-		return friends;
+		//Query query = s.createQuery("from Friend where sentUser=? and status = '1' or receivedUser =? and status = '1' ");
+		return s.createSQLQuery("select receivedUser from friend where sentUser=? and status=1 union select sentUser from friend where receivedUser=? and status=1")
+		      .setParameter(0, username)
+		      .setParameter(1, username)
+		      .getResultList();
 		}
 		catch(Exception e)
 		{
@@ -50,7 +51,22 @@ public class FriendDaoImpl implements FriendDao {
 		
 	}
 
-	
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<String> suggestedFriends(String username) {
+		try {
+			Session s = sessionFactory.getCurrentSession();
+			return s.createSQLQuery("select username from portal_user where username!=? and (username not in (select receivedUser from friend where sentUser=? union select sentUser from friend where receivedUser=?))")
+					.setParameter(0, username)
+					.setParameter(1, username)
+					.setParameter(2, username)
+					.getResultList();
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+	}
 
 	@Override
 	public boolean updateFriend(Friend friend) {
@@ -61,6 +77,21 @@ public class FriendDaoImpl implements FriendDao {
 	@Override
 	public Friend getFriend(int id) {
 		return sessionFactory.getCurrentSession().get(Friend.class,id);
+	}
+
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<String> getFriendRequests(String username) {
+		try
+		{
+			Session s = sessionFactory.getCurrentSession();
+			return s.createSQLQuery("select sentUser from friend where receivedUser=? and status=0")
+					.setParameter(0, username)
+					.getResultList();
+		}	catch(Exception e)
+		{
+			return null;
+		}
 	}
 
 }

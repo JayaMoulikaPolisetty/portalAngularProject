@@ -14,8 +14,11 @@ public interface FriendDao {
 	
 	Friend getFriend(int id);
 	
-	List<Friend> allFriends(String username);
+	List<String> allFriends(String username);
 	
+	List<String> suggestedFriends(String username);
+	
+	List<String> getFriendRequests(String username);
 	
 
 }
