@@ -50,6 +50,14 @@ HomeModule.config(function($routeProvider){
     templateUrl: "JobDescription.html",
     controller: "JobController"
   })
+  .when("/friend",{
+    templateUrl: "Friend.html",
+    controller: "FriendController"
+  })
+  .when("/moreFriends",{
+    templateUrl: "SuggestedFriends.html",
+    controller: "FriendController"
+  })
     // .when("/logout", {
     //   templateUrl: "Login.html",
     //   controller: "HomeController"

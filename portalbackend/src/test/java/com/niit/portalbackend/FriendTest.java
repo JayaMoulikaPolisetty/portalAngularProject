@@ -64,26 +64,26 @@ public class FriendTest {
 //		}
 //	}
 	
-//	@Test
-//	public void getSuggestedFriends()
-//	{
-//		List<String> friends = friendDao.suggestedFriends("chandu");
-//		for(int i=0;i<friends.size();i++)
-//			{
-//				String f = friends.get(i);
-//				System.out.println(f);
-//			}
-//		
-//	}
-	
 	@Test
-	public void getFriendRequests()
+	public void getSuggestedFriends()
 	{
-		List<String> friends = friendDao.getFriendRequests("chandu");
+		List<String> friends = friendDao.suggestedFriends("chandu");
 		for(int i=0;i<friends.size();i++)
 			{
 				String f = friends.get(i);
 				System.out.println(f);
 			}
+		
 	}
+	
+//	@Test
+//	public void getFriendRequests()
+//	{
+//		List<String> friends = friendDao.getFriendRequests("hansh");
+//		for(int i=0;i<friends.size();i++)
+//			{
+//				String f = friends.get(i);
+//				System.out.println(f);
+//			}
+//	}
 }

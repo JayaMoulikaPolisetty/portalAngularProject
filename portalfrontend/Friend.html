@@ -1,0 +1,31 @@
+<div ng-init="friendrequests()">
+
+<div class="col-md-2"></div>
+<div class="col-md-6">
+  <h4><a href= "#!/moreFriends">Find more friends</a></h4>
+    <h3 ng-show="suggested.length == 0">No pending requests</h3>
+  <div ng-show="requests.length!=0">
+<h2>List of Pending Requests</h2>
+<div>
+ <table class="table table-bordered">
+   <tr ng-repeat = "r in requests">
+     <td>{{r}}</td>
+     <td><button type="submit" ng-click = "acceptRequest()" name="button">Accept</button>
+     <button type="submit" ng-click="rejectRequest()" name="button">Reject</button></td>
+   </tr>
+ </table>
+</div>
+</div>
+<div>
+    <h3 ng-show="friends.length == 0">No Friends</h3>
+  <div ng-show="friends.length!=0">
+ <h3>List of Friends</h3>
+
+  <table class="table table-bordered">
+    <tr ng-repeat = "f in friends">
+      <td>{{f}}</td>
+    </tr>
+  </table>
+</div>
+</div>
+</div>
