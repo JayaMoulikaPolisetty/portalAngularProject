@@ -74,4 +74,32 @@ public class FriendController {
 		}
 	}
 
+	@PostMapping("/acceptRequest")
+	public ResponseEntity<?> acceptRequest(@RequestBody Friend frnd)
+	{
+		try {
+			Friend friend = friendDao.getFriend(frnd);
+			friend.setStatus(1);
+			friendDao.updateFriend(friend);
+			return new ResponseEntity<Friend>(friend, HttpStatus.OK);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<Boolean>(false,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	@PostMapping("/rejectRequest")
+	public ResponseEntity<?> rejectRequest(@RequestBody Friend frnd)
+	{
+		try {
+			Friend friend = friendDao.getFriend(frnd);
+			
+			friendDao.deleteFriend(friend);
+			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<Boolean>(false,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

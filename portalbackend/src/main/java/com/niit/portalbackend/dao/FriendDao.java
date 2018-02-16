@@ -12,7 +12,7 @@ public interface FriendDao {
 	
 	boolean updateFriend(Friend friend);
 	
-	Friend getFriend(int id);
+	Friend getFriend(Friend friend);
 	
 	List<String> allFriends(String username);
 	

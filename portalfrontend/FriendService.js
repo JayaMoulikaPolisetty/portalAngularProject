@@ -20,5 +20,11 @@ friendService.suggestedFrnds = function(username) {
 friendService.sendRequest = function(friend){
   return $http.post(BASE_URL+"/sendRequest",friend);
 }
+friendService.acceptRequest = function(friend){
+  return $http.post(BASE_URL+"/acceptRequest",friend);
+}
+friendService.rejectRequest = function(friend){
+  return $http.post(BASE_URL+"/rejectRequest",friend);
+}
 return friendService;
 })

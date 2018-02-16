@@ -74,11 +74,6 @@ public class FriendDaoImpl implements FriendDao {
 		return true;
 	}
 
-	@Override
-	public Friend getFriend(int id) {
-		return sessionFactory.getCurrentSession().get(Friend.class,id);
-	}
-
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public List<String> getFriendRequests(String username) {
@@ -91,6 +86,20 @@ public class FriendDaoImpl implements FriendDao {
 		}	catch(Exception e)
 		{
 			return null;
+		}
+	}
+
+	@Override
+	public Friend getFriend(Friend friend) {
+		try {
+			Session s = sessionFactory.getCurrentSession();
+			return (Friend) s.createQuery("from Friend where sentUser=? and receivedUser=?")
+					.setParameter(0, friend.getSentUser())
+					.setParameter(1, friend.getReceivedUser())
+					.getSingleResult();
+		}catch(Exception e)
+		{
+		return null;
 		}
 	}
 

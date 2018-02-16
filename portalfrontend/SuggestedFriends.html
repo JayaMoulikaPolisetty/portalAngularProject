@@ -9,7 +9,7 @@
  <table class="table table-bordered">
    <tr ng-repeat = "s in suggested">
      <td>{{s}}</td>
-     <td><button type="submit" ng-click="sendRequest(s)" name="button">Send friend request</button></td>
+     <td><button type="submit" ng-click="sendRequest(s, $index)" name="button">Send friend request</button></td>
    </tr>
  </table>
 </div>

@@ -10,8 +10,8 @@
  <table class="table table-bordered">
    <tr ng-repeat = "r in requests">
      <td>{{r}}</td>
-     <td><button type="submit" ng-click = "acceptRequest()" name="button">Accept</button>
-     <button type="submit" ng-click="rejectRequest()" name="button">Reject</button></td>
+     <td><button type="submit" ng-click = "acceptRequest(r, $index)" name="button">Accept</button>
+     <button type="submit" ng-click="rejectRequest(r,$index)" name="button">Reject</button></td>
    </tr>
  </table>
 </div>
