@@ -58,10 +58,10 @@ HomeModule.config(function($routeProvider){
     templateUrl: "SuggestedFriends.html",
     controller: "FriendController"
   })
-    // .when("/logout", {
-    //   templateUrl: "Login.html",
-    //   controller: "HomeController"
-    // })
 
-
+  .when("/app",{
+    templateUrl: "ChatBox.html",
+    controller: "ChatController",
+    controllerAs:"chatCtrl"
+  })
 })

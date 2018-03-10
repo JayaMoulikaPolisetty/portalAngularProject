@@ -1,0 +1,21 @@
+<div>
+
+</div>
+<div>
+
+    <form role="form" ng-submit="sendMessage()">
+        <legend>Chat Message</legend>
+
+        <div class="form-group">
+            <label for="">Enter Message</label>
+            <input type="text" class="form-control" id="" placeholder="Input field" ng-model="chatCtrl.mesg.message">
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+      {{chatCtrl.messageList}}
+</div>

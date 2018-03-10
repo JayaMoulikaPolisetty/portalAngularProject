@@ -39,6 +39,7 @@
           </ul>
         </li>
         <li><a href="#!/friend" ng-show ="authenticated">Friends</a></li>
+        <li><a href="#!/app" ng-show ="authenticated">Chat</a></li>
         <li><a href="#" ng-click="logout()" ng-controller="HomeController" ng-show="authenticated">Logout</a></li>
       </ul>
       <form class="navbar-form navbar-left" role="search">
@@ -73,10 +74,14 @@
 <script src="JobService.js" charset="utf-8"></script>
 <script src="FriendController.js" charset="utf-8"></script>
 <script src="FriendService.js" charset="utf-8"></script>
+<script src="ChatController.js" charset="utf-8"></script>
+<script src="ChatService.js" charset="utf-8"></script>
 
 <script src="bower_components\angular-route\angular-route.js" charset="utf-8"></script>
 <script src="node_modules\angular-cookies\angular-cookies.min.js" charset="utf-8"></script>
 <script src="bower_components\angularUtils-pagination\dirPagination.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js" charset="utf-8"></script>
 
 </body>
 </html>
